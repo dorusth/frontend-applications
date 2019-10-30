@@ -83,6 +83,10 @@
 	position: absolute;
 }
 
+.overviewItem button:hover{
+	cursor: pointer;
+}
+
 .button-like{
 	background-color: green;
 }

@@ -13,6 +13,19 @@ class overviewItem extends React.Component{
 	  return {__html: this.props.name.description.value};
 	}
 
+	like(){
+		if(this.state.liked==="far fa-heart"){
+			this.setState({
+				liked:"fas fa-heart",
+				likedButton:"button-like-active"
+			})
+		}else {
+			this.setState({
+				liked: "far fa-heart",
+				likedButton: "button-like"
+			})
+		}
+	}
 
 	render(){
 		return (<div className="overviewItem"><a href={this.props.name.cho.value}>
@@ -22,7 +35,7 @@ class overviewItem extends React.Component{
 				<p>{this.props.name.placeName.value}</p>
 				<p className="overview_description" dangerouslySetInnerHTML={this.createMarkup()} />
 			</div>
-			<button className={this.state.likedButton} onClick={()=>{this.props.updateSaved(this.props.name); this.setState({liked:"fas fa-heart", likedButton:"button-like-active"})}}><i className={this.state.liked}></i></button>
+			<button className={this.state.likedButton} onClick={()=>{this.props.updateSaved(this.props.name); this.like()}}><i className={this.state.liked}></i></button>
 		</div>)
 	}
 

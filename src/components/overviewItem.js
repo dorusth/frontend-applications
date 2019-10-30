@@ -4,8 +4,8 @@ class overviewItem extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			loading: true,
-			liked: "far fa-heart"
+			liked: "far fa-heart",
+			likedButton: "button-like"
 		}
 	}
 
@@ -22,7 +22,7 @@ class overviewItem extends React.Component{
 				<p>{this.props.name.placeName.value}</p>
 				<p className="overview_description" dangerouslySetInnerHTML={this.createMarkup()} />
 			</div>
-			<button onClick={()=>{this.props.updateSaved(this.props.name); this.setState({liked:"fas fa-heart"})}}><i className={this.state.liked}></i></button>
+			<button className={this.state.likedButton} onClick={()=>{this.props.updateSaved(this.props.name); this.setState({liked:"fas fa-heart", likedButton:"button-like-active"})}}><i className={this.state.liked}></i></button>
 		</div>)
 	}
 

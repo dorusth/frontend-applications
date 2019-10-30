@@ -32,6 +32,11 @@
 
 .App-header ul li:hover{
 	cursor: pointer;
+	background-color: rgb(103, 103, 103);
+}
+
+.App-header ul li.selected{
+/* background-color: rgb(103, 103, 103); */
 }
 
 .overview{
@@ -63,11 +68,25 @@
 	background-color: rgb(210, 210, 210);
 }
 
-.overview_info{
-}
 
 .overview_description{
 	height: 3.5em;
 	text-overflow: ellipsis;
 	overflow: hidden;
+}
+
+.overviewItem button{
+	top:0;
+	left:0;
+	padding: 1em;
+	border-radius: 50%;
+	position: absolute;
+}
+
+.button-like{
+	background-color: green;
+}
+
+.button-like-active{
+	background-color: red;
 }

@@ -6,6 +6,7 @@ class App extends React.Component {
 	state = {
 		loading:true,
 		place:"https://hdl.handle.net/20.500.11840/termmaster7745",
+		currentSelected:"https://hdl.handle.net/20.500.11840/termmaster7745",
 		places: [
 			{
 				name:"Indonesië",
@@ -50,6 +51,7 @@ class App extends React.Component {
 			if (index > -1) {
 			  list.splice(index, 1);
 			  this.setState({saved:list}, console.log(this.state.saved))
+			  localStorage.setItem('saved', JSON.stringify(list))
 			}
 		}else{
 			let current = this.state.saved
@@ -93,20 +95,25 @@ class App extends React.Component {
 	//change current url state based on nav input
 	updatePlace(url){
 		if(url!=="saved"){
-			this.setState({place:url}, ()=>{this.getData()})
+			this.setState({place:url, currentSelected:url}, ()=>{this.getData()})
 		}else{
 			this.setState({
 				masks:this.state.saved,
-				loading: false
+				loading: false,
+				currentSelected:"saved"
 			})
 		}
 	}
 
 	//map nav items based on places object
 	items = this.state.places.map(
-		(place, i) => (
-			<li key={i} onClick={()=>{this.updatePlace(place.url)}}>{place.name}</li>
-	))
+		(place, i) => {
+			if(place.url=== this.state.currentSelected){
+				return <li key={i} className="selected" onClick={()=>{this.updatePlace(place.url)}}>{place.name}</li>
+			}else{
+				return <li key={i} onClick={()=>{this.updatePlace(place.url)}}>{place.name}</li>
+			}
+	})
 
 
 	render(){
